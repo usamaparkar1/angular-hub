@@ -1,0 +1,97 @@
+.login-container {
+    > h3 {
+        margin: 0;
+        padding: 1rem;
+    }
+}
+
+.form-container {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    > div {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+
+.error-container {
+    color: red;
+    padding-top: 0.3rem;
+    padding-left: 0.3rem;
+}
+
+.form-inuput-container {
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+  
+.form-inuput-container label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+  
+.styled-input {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding-right: 40px; /* Add space for the toggle button */
+}
+
+.styled-input.ng-invalid.ng-touched, 
+.styled-input.ng-invalid.ng-dirty {
+  border-color: red;
+}
+
+.styled-input:focus {
+    border-color: lime;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.styled-input::placeholder {
+    color: #aaa;
+}
+
+.password-eye-container {
+    position: absolute;
+    right: 40px;
+    top: 144px;
+}
+
+.submit-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50; /* Green background */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.submit-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+  
+.submit-button:disabled {
+    background-color: #cccccc; /* Greyed out when disabled */
+    cursor: not-allowed;
+}
+  
+  /* Optional: Add box-shadow for a subtle depth effect */
+.submit-button {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+.submit-button:focus {
+    outline: none;
+}
+  

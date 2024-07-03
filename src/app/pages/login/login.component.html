@@ -1,0 +1,72 @@
+<!-- Add some styles to login container. Mostly padding -->
+<div class="login-container">
+    <h3>Registration Page</h3>
+
+    <!-- Form Container -->
+    <form [formGroup]="loginForm" class="form-container">
+        <!-- Username -->
+        <div class="form-inuput-container">
+            <input
+                type="text"
+                class="styled-input"
+                formControlName="username"
+                placeholder="username"
+                [maxlength]="loginValidators.usernameMaxLength"
+            />
+            <div *ngIf="getUserNameError()" class="error-container">{{ getUserNameError() }}</div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-inuput-container">
+            <input
+                type="{{ showPassword ? 'text' : 'password' }}"
+                class="styled-input"
+                formControlName="password"
+                placeholder="Password"
+                [maxlength]="loginValidators.passwordMaxLength"
+            />
+            <span class="password-eye-container" (click)="togglePasswordVisibility()">
+                <i *ngIf="showPassword" class="far fa-eye"></i>
+                <i *ngIf="!showPassword" class="far fa-eye-slash"></i>
+            </span>
+            <div *ngIf="getPasswordError()" class="error-container">{{ getPasswordError() }}</div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-inuput-container">
+            <input
+                type="email"
+                class="styled-input"
+                formControlName="email"
+                placeholder="Email Address.."
+            />
+            <div *ngIf="getEmailError()" class="error-container">{{ getEmailError() }}</div>
+        </div>
+
+        <!-- Office Phone Number -->
+        <div class="form-inuput-container">
+            <input
+                type="tel"
+                class="styled-input"
+                formControlName="officePhoneNumber"
+                placeholder="Office Number"
+                [maxlength]="loginValidators.officePhoneMaxLength"
+            />
+            <div *ngIf="getOfficePhoneError()" class="error-container">{{ getOfficePhoneError() }}</div>
+        </div>
+        
+        <!-- Mobile Phone Number -->
+        <div class="form-inuput-container">
+            <input
+                type="tel"
+                class="styled-input"
+                formControlName="mobilePhoneNumber"
+                placeholder="Mobile Number"
+                [maxlength]="loginValidators.mobilePhoneMaxLength"
+            />
+            <div *ngIf="getMobilePhoneError()" class="error-container">{{ getMobilePhoneError() }}</div>
+        </div>
+
+        <button type="submit" class="submit-button" [disabled]="loginForm.invalid">Submit</button>
+    </form>
+</div>
