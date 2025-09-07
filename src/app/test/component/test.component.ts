@@ -1,3 +1,4 @@
+import { StockPricesComponent } from "../../components/stock-prices/stock-prices.component";
 import { TestFormBuilderService } from '../utils/test-form-builder.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
@@ -6,10 +7,10 @@ import { TestService } from '../service/test.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-test',
-    styleUrl: './test.component.scss',
-    templateUrl: './test.component.html',
-    imports: [CommonModule, ReactiveFormsModule]
+  selector: 'app-test',
+  styleUrl: './test.component.scss',
+  templateUrl: './test.component.html',
+  imports: [CommonModule, ReactiveFormsModule, StockPricesComponent]
 })
 
 export class TestComponent implements OnInit, AfterViewInit {
