@@ -1,0 +1,7 @@
+// You need to build a large, filterable, and real-time data grid for a financial analytics dashboard.
+// Requirements:
+// The grid must handle 50k+ rows (users should still have smooth scrolling).
+// Support server-side pagination, filtering, and sorting (sync with query params).
+// Enable column resizing and hiding (persist user preferences).
+// Handle real-time updates via WebSocket without reloading the whole grid.
+// Ensure accessibility (keyboard navigation, screen readers).
