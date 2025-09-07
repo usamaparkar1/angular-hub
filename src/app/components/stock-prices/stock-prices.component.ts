@@ -3,11 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
-  selector: 'app-stock-prices',
-  templateUrl: './stock-prices.component.html',
-  styleUrl: './stock-prices.component.scss',
-  imports: [CommonModule],
+    selector: 'app-stock-prices',
+    templateUrl: './stock-prices.component.html',
+    styleUrl: './stock-prices.component.scss',
+    imports: [CommonModule]
 })
 
 export class StockPricesComponent implements OnInit {

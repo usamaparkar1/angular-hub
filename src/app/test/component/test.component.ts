@@ -6,11 +6,10 @@ import { TestService } from '../service/test.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
-  selector: 'app-test',
-  styleUrl: './test.component.scss',
-  templateUrl: './test.component.html',
-  imports: [CommonModule, ReactiveFormsModule],
+    selector: 'app-test',
+    styleUrl: './test.component.scss',
+    templateUrl: './test.component.html',
+    imports: [CommonModule, ReactiveFormsModule]
 })
 
 export class TestComponent implements OnInit, AfterViewInit {

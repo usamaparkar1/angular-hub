@@ -4,10 +4,9 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-login',
-    standalone: true,
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss',
-    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    imports: [CommonModule, FormsModule, ReactiveFormsModule]
 })
 
 export class LoginComponent {
