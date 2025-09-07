@@ -5,9 +5,9 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [CommonModule, FormsModule, ReactiveFormsModule],
     templateUrl: './login.component.html',
-    styleUrl: './login.component.scss'
+    styleUrl: './login.component.scss',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
 
 export class LoginComponent {
