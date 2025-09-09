@@ -1,0 +1,19 @@
+.up {
+  color: green;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+.down {
+  color: red;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+.neutral {
+  color: black;
+}
+.stock-container {
+  font-family: Arial, sans-serif;
+  padding: 10px;
+  border: 1px solid #ddd;
+  display: inline-block;
+}

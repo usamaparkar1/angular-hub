@@ -1,4 +1,5 @@
 import { TestComponent } from './test/component/test.component';
+import { StockPricesRoute } from './routes/stock-prices-route';
 import { LoginComponent } from './pages/login/login.component';
 import { testResolver } from './test/resolver/test.resolver';
 import { Route, Routes } from '@angular/router';
@@ -24,5 +25,6 @@ export const routes: Routes = [
         redirectTo: 'test',
     },
     loginRoute,
+    StockPricesRoute,
     TestRoute
 ];

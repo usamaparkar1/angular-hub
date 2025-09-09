@@ -1,6 +1,7 @@
+import { BehaviorSubject, interval, Observable } from 'rxjs';
 import { StockPrice } from '../../models/stock-prices';
-import { interval, map, Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +9,37 @@ import { Injectable } from '@angular/core';
 
 export class StockPricesService {
 
-  private _stockPriceStream$: Observable<StockPrice> = new Observable<StockPrice>();
+  private stockSubject = new BehaviorSubject<StockPrice>(this._createNewDefaultStockPrice());
 
-  constructor() {}
-
-  triggerMockStockPriceUpdatesThousandEventsPerSecond() {
-    this._stockPriceStream$ = interval(1).pipe(map(i => ({ price: 100 + i })));
+  constructor(private ngZone: NgZone) {
+    this.triggerStockPricesChanges();
   }
 
-  get getStockPrices(): Observable<StockPrice> {
-    return this._stockPriceStream$;
+  triggerStockPricesChanges() {
+    // Run interval outside Angular to avoid flooding change detection
+    this.ngZone.runOutsideAngular(() => {
+      interval(100).pipe(
+        map(() => ({
+          symbol: 'AAPL',
+          price: parseFloat((150 + Math.random() * 10).toFixed(2)),
+          timestamp: new Date()
+        }))
+      ).subscribe(stock => {
+        // Emit inside Angular zone for UI updates
+        this.ngZone.run(() => this.stockSubject.next(stock));
+      });
+    });
+  }
+
+  private _createNewDefaultStockPrice() {
+    return new StockPrice({
+      price: 0,
+      symbol: 'AAPL',
+      timestamp: new Date()
+    });
+  }
+
+  getStockPrice(): Observable<StockPrice> {
+    return this.stockSubject.asObservable();
   }
 }

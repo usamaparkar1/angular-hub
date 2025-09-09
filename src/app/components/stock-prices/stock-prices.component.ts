@@ -1,20 +1,25 @@
 import { StockPricesService } from '../../services/stock-prices/stock-prices.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subject, takeUntil, throttleTime } from 'rxjs';
+import { StockPrice } from '../../models/stock-prices';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-stock-prices',
-    templateUrl: './stock-prices.component.html',
-    styleUrl: './stock-prices.component.scss',
-    imports: [CommonModule]
+  selector: 'app-stock-prices',
+  templateUrl: './stock-prices.component.html',
+  styleUrls: ['./stock-prices.component.scss'],
+  imports: [CommonModule]
 })
 
-export class StockPricesComponent implements OnInit {
+export class StockPricesComponent implements OnInit, OnDestroy {
 
-  stockPriceObservable$ = this._stockPricesService.getStockPrices;
+  private _liveStockPricesSubject$: Subject<StockPrice | null> = new Subject<StockPrice | null>();
+  private _previousPrice?: number;
+
+  latestStockPrice?: StockPrice;
 
   constructor(
-    private _stockPricesService: StockPricesService
+    private stockPricesService: StockPricesService
   ) { }
 
   ngOnInit(): void {
@@ -22,6 +27,43 @@ export class StockPricesComponent implements OnInit {
   }
 
   private _setupStockPricesPage() {
-    // this._stockPricesService.triggerMockStockPriceUpdatesThousandEventsPerSecond();
+    this.stockPricesService.triggerStockPricesChanges();
+    this._subscribeToStockPriceChangesEvent();
+  }
+
+  private _subscribeToStockPriceChangesEvent() {
+    this.stockPricesService.getStockPrice()
+    .pipe(
+      takeUntil(this._liveStockPricesSubject$),
+      throttleTime(500) // Limit UI updates to 2 per second
+    )
+    .subscribe((price: StockPrice) => {
+      this._setCurrentPriceAsPreviousPriceBeforeUpdatingTheLatestPrice();
+      this._setNewPriceFromStockPricesSubscriptionAsLatestPrice(price);
+    });
+  }
+
+  private _setCurrentPriceAsPreviousPriceBeforeUpdatingTheLatestPrice() {
+    this._previousPrice = this.latestStockPrice?.price;
+  }
+
+  private _setNewPriceFromStockPricesSubscriptionAsLatestPrice(latestStockPrice: StockPrice) {
+    this.latestStockPrice = latestStockPrice;
+  }
+
+  priceChangeClass(): string {
+    if (!this._previousPrice) return 'neutral';
+    if (this.latestStockPrice!.price > this._previousPrice) return 'up';
+    if (this.latestStockPrice!.price < this._previousPrice) return 'down';
+    return 'neutral';
+  }
+
+  ngOnDestroy(): void {
+    this._destroyStockPricesSubject();
+  }
+
+  private _destroyStockPricesSubject() {
+    this._liveStockPricesSubject$.next(null);
+    this._liveStockPricesSubject$.complete();
   }
 }
