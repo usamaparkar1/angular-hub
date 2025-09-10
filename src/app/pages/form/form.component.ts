@@ -3,14 +3,13 @@ import { FormValidatorService } from '../../utils/form-validator/form-validator.
 import { FormBuilderService } from '../../utils/form-builder/form-builder.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { InputComponent } from "../input/input.component";
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
-  imports: [ReactiveFormsModule, InputComponent]
+  imports: [ReactiveFormsModule]
 })
 
 export class FormComponent implements OnInit {
