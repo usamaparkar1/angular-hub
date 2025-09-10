@@ -4,12 +4,13 @@ import { FormBuilderService } from '../../utils/form-builder/form-builder.servic
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { InputComponent } from 'hub-components';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule, InputComponent]
 })
 
 export class FormComponent implements OnInit {
