@@ -34,12 +34,4 @@ export class TestService {
       return null;
     }
   }
-
-  avoidDuplicateHttpCalls(productId: string): Observable<TestData> {
-    try {
-      return this._http.get<TestData>(`avoid-duplicate-http-calls/${productId}`);
-    } catch (error) {
-      return new Observable<any>();
-    }
-  }
 }
