@@ -1,18 +1,20 @@
+import { SearchForm } from '../../interfaces/form/form-group';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TestFormBuilderService {
+
+export class FormBuilderService {
 
   constructor(
     private _formBuilder: FormBuilder
-  ) { }
+  ) {}
 
-  createTestForm(): FormGroup {
+  createForm(): FormGroup<SearchForm> {
     return this._formBuilder.group({
-      search: [null]
+      search: this._formBuilder.control<string | null>(null)
     }); 
   }
 }
