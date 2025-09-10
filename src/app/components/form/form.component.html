@@ -1,0 +1,10 @@
+<form [formGroup]="formGroup">
+  <app-input
+    inputId="search-input"
+    inputType="text"
+    labelName="Search Label"
+    inputTitle="Search"
+    [inputFormControl]="searchFormControl"
+    [getErrorFn]="getSearchInputError"
+  ></app-input>
+</form>

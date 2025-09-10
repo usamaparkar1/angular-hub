@@ -1,3 +1,4 @@
 export enum AppRoutesEnum {
-    StockPrices = "stock-prices"
+    StockPrices = "stock-prices",
+    FormRoute = "form"
 }
