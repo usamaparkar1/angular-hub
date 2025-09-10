@@ -3,6 +3,7 @@ import { StockPricesRoute } from './routes/stock-prices-route';
 import { LoginComponent } from './pages/login/login.component';
 import { testResolver } from './test/resolver/test.resolver';
 import { Route, Routes } from '@angular/router';
+import { FormRoute } from './routes/form-route';
 
 export const loginRoute: Route = {
     path: 'login',
@@ -26,5 +27,6 @@ export const routes: Routes = [
     },
     loginRoute,
     StockPricesRoute,
-    TestRoute
+    TestRoute,
+    FormRoute
 ];
