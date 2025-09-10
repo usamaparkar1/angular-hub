@@ -1,5 +1,5 @@
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Component, Input, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -25,6 +25,8 @@ export class InputComponent {
 
   getInputError(): string | null {
     const fn = this.getErrorFn();
-    return fn ? fn(this.inputFormControl()) : null;
+    const ctrl = this.inputFormControl();
+
+    return fn && ctrl ? fn(ctrl) : null;
   }
 }

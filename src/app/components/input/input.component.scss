@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   margin: 0 auto;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   flex-direction: column;
   font-family: Arial, sans-serif;
 }
@@ -36,4 +36,9 @@
 
 .styled-input::placeholder {
   color: #aaa;
+}
+
+.form-error-container {
+  margin-top: 0.5rem;
+  color: red;
 }
